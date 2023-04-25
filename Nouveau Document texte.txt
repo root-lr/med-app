@@ -1,0 +1,133 @@
+Voici le cas d'utilisation et le diagramme de séquence pour l'accès aux informations d'un patient dans le contexte d'une interface utilisable uniquement à l'hôpital :
+
+Cas d'utilisation : Accès aux informations d'un patient
+
+Acteur principal : Médecin
+
+Préconditions : Le médecin est connecté à l'interface de consultation médicale en langage des signes.
+
+Scénario principal :
+
+Le médecin sélectionne l'option "Rechercher un patient" ou "Consulter un patient".
+L'interface affiche un formulaire de recherche permettant au médecin de saisir les informations du patient à rechercher (nom, prénom, numéro d'identifiant, etc.).
+Le médecin saisit les informations du patient dans le formulaire.
+Le médecin valide la recherche.
+L'interface recherche les informations du patient dans la base de données.
+L'interface affiche les informations du patient trouvé, telles que son nom, prénom, date de naissance, antécédents médicaux, etc.
+Le médecin peut consulter, modifier ou supprimer les informations du patient en fonction des permissions accordées.
+Scénario alternatif :
+
+Si aucun patient n'est trouvé avec les informations de recherche saisies, l'interface affiche un message indiquant qu'aucun patient n'a été trouvé.
+Post-conditions : Les informations du patient sont affichées à l'écran et peuvent être consultées, modifiées ou supprimées par le médecin en fonction des autorisations accordées.
+
+
+////
+Titre : Ajout d'un nouveau patient
+
+Acteur principal : Médecin
+
+Préconditions : Le médecin est connecté à l'interface de consultation médicale en langage des signes.
+
+Scénario principal :
+1. Le médecin sélectionne l'option "Ajouter un nouveau patient".
+2. L'interface affiche un formulaire de saisie des informations du patient (nom, prénom, date de naissance, etc.).
+3. Le médecin remplit les informations du patient dans le formulaire.
+4. Le médecin valide la saisie des informations.
+5. L'interface vérifie la validité des informations saisies (format, complétude, etc.).
+6. Si les informations sont valides, l'interface enregistre les informations du patient dans la base de données.
+7. L'interface affiche un message de confirmation de l'ajout du patient.
+8. Le médecin peut consulter les informations du patient ajouté et les utiliser dans le cadre de la consultation médicale en langage des signes.
+
+Scénario alternatif :
+- Si les informations saisies ne sont pas valides, l'interface affiche un message d'erreur indiquant les champs incorrects à corriger.
+- Si le patient ajouté existe déjà dans la base de données, l'interface affiche un message d'erreur indiquant que le patient existe déjà.
+
+Post-conditions : Le nouveau patient est ajouté dans la base de données et les informations du patient sont affichées à l'écran. Le médecin peut les utiliser dans le cadre de la consultation médicale en langage des signes.
+
+
+//////////////////////////////////////////////////////////////////
+Cas d'utilisation : Planification et gestion des rendez-vous
+
+Acteur principal : Médecin
+
+Préconditions : Le médecin est connecté à l'interface de consultation médicale en langage des signes.
+
+Scénario principal :
+
+Le médecin sélectionne l'option "Planifier un rendez-vous".
+L'interface affiche un calendrier avec les disponibilités du médecin.
+Le médecin sélectionne une date et une heure pour le rendez-vous.
+L'interface vérifie la disponibilité du créneau sélectionné.
+Si le créneau est disponible, l'interface affiche un formulaire pour saisir les informations du patient (nom, prénom, etc.).
+Le médecin saisit les informations du patient dans le formulaire.
+Le médecin valide la planification du rendez-vous.
+L'interface enregistre les informations du rendez-vous dans la base de données.
+L'interface génère un output en utilisant le langage de programmation Lua pour confirmer la planification du rendez-vous au patient (par exemple, un message texte ou un message en langue des signes).
+Scénario alternatif :
+
+Si le créneau n'est pas disponible, l'interface affiche un message d'erreur et invite le médecin à choisir un autre créneau.
+Post-conditions : Le rendez-vous est planifié et enregistré dans la base de données, et un output est généré pour confirmer la planification au patient en utilisant le langage de programmation Lua.
+
+ _____________________________
+| Médecin                    |
+|_____________________________|
+| + planifierRendezVous()    |
+| + modifierRendezVous()     |
+|_____________________________|
+
+          |
+          | Sélectionne
+          V
+ ______________________________
+| Interface de consultation  |
+| médicale en langage des signes|
+|______________________________|
+| + afficherCalendrier()      |
+| + afficherFormulaire()      |
+| + enregistrerRendezVous()   |
+| + confirmerPlanification()  |
+|______________________________|
+
+          |
+          | Affiche calendrier
+          V
+ ______________________________
+| Calendrier                  |
+|______________________________|
+| + afficherDisponibilites()  |
+|______________________________|
+
+          |
+          | Sélectionne date/heure
+          V
+ ______________________________
+| Interface de consultation  |
+| médicale en langage des signes|
+|______________________________|
+| + afficherFormulaire()      |
+|______________________________|
+
+          |
+          | Saisit informations patient
+          V
+ ______________________________
+| Interface de consultation  |
+| médicale en langage des signes|
+|______________________________|
+| + enregistrerRendezVous()   |
+|______________________________|
+
+          |
+          | Confirme planification
+          V
+ ______________________________
+| Interface de consultation  |
+| médicale en langage des signes|
+|______________________________|
+| + confirmerPlanification()  |
+|______________________________|
+
+
+////////////////////////////////////////////////////////////////////////
+
+
