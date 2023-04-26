@@ -1,49 +1,23 @@
-### [coreui-free-angular-admin-template](https://coreui.io/angular/) changelog
+## [1.4.0] - 2022-05-06
+### Updates
+- update to Angular 13
+- update all dependencies to match Angular 13 version
+- routing issue fixed
+## [1.3.0] - 2020-12-17
+### Updates
+- update to Angular 11
+- update all dependencies to match Angular 11 version
 
----
+## [1.2.0] - 2020-03-13
+### Updates
+- update to Angular 9
+- update all dependencies to match Angular 9 version
 
-#### `4.3.11`
+## [1.1.0] - 2019-02-11
+### Changes
+- update to Angular 7
+- update ng-bootstrap to version 4
+- update all dependencies to latest versions
 
-- chore(dependencies): update `@angular/*` to version `^15.2.7`
-- standalone components:
-  - chore(dependencies): update `@coreui/angular` to version `~4.4.1`
-  - chore(dependencies): update `@coreui/angular-chartjs` to version `~4.4.1`
-  - chore(dependencies): update `@coreui/icons-angular` to version `~4.4.1`
-- fix(widgets): breakpoints
-
----
-
-#### `4.3.10`
-
-- chore(dependencies): update `@angular/*` to version `^15.2.4`
-- chore(dependencies): update `@coreui/angular` to version `~4.3.17`
-- chore(dependencies): update `@coreui/angular-chartjs` to version `~4.3.17`
-- chore(dependencies): update `@coreui/icons-angular` to version `~4.3.17`
-- chore(dependencies): update `@coreui/icons` to version `^3.0.1`
-- chore(dependencies): update `@coreui/charts` to version `^3.1.1`
-- chore(dependencies): update `@coreui/utils` to version `^2.0.1`
-
-imports update required :boom: :exclamation:
-- from `import {getStyle, ...} from '@coreui/utils/src`
-- to `import  {getStyle, ...} from '@coreui/utils` 
-
----
-
-#### `4.3.9`
-
-- chore: dependencies update
-- fix(widgets): add missing pointBackgroundColor
-
----
-
-#### `4.3.0`
-
-update to:
-- `Angular 15`
-- `TypeScript 4.8`
-- `RxJS 7.5`
-
-refactor: 
-- refactor(AppComponent): change selector to `app-root`
-
----
+## [1.0.0] - 2018-05-17
+### Initial Release
