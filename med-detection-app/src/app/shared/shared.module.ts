@@ -3,18 +3,18 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../environments/environment'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 
-import { AppRoutingModule } from './app.routing';
-import { ComponentsModule } from './components/components.module';
-import { SharedModule } from "./shared/shared.module";
-import { AppComponent } from './app.component';
-
 import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment'
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AppRoutingModule } from '../app.routing';
+import { ComponentsModule } from '../components/components.module';
+
+import { AppComponent } from '../app.component';
+
+import { AdminLayoutComponent } from '../layouts/admin-layout/admin-layout.component';
 
 @NgModule({
   imports: [
@@ -26,7 +26,6 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     NgbModule,
-    SharedModule,
     ToastrModule.forRoot()
   ],
   declarations: [
@@ -37,4 +36,5 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class SharedModule { }
+
