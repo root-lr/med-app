@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+import { Patient } from '../model/patient.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
-
-  private collectionName: string = "events";
-  private itemsCollection: AngularFirestoreCollection<Event>
+export class PatientsService {
+  private collectionName: string = "patients";
+  private itemsCollection: AngularFirestoreCollection<Patient>
 
   constructor(private firestore: AngularFirestore) { 
-    this.itemsCollection = this.firestore.collection<Event>(this.collectionName, ref => ref.orderBy("created_at", "desc"));
+    this.itemsCollection = this.firestore.collection<Patient>(this.collectionName, ref => ref.orderBy("created_at", "desc"));
   }
   //transform data
   transformData(dataFb: any): any[]{
@@ -34,31 +34,10 @@ export class DataService {
   }//end transformData
 
 
-  //transform data to slider format
-  transformDataToSliderFormat(dataFbSlider: any): any[]{
-
-    let finalDataSlider: any[] = [];
-
-    dataFbSlider.forEach((data:any) =>{
-      let title: any = data.payload.doc.data()['title'];
-      //let description: string = "";
-      let imageUrl: any = data.payload.doc.data()['imgUrl'];
-      //let views: any = [];
-      let itemSlider: any = {title: title,  imageUrl: imageUrl, views: [], alt: title, thumbImage: imageUrl };
-      finalDataSlider.push(itemSlider);
-      // return dataList;
-    })
-
-
-    return finalDataSlider;
-
-  }//end transformDataToSliderFormat
-
-
 
 
   //cree un cours
-  createEvents(data:any) {
+  createPatient(data:any) {
     return new Promise<any>((resolve, reject) => {
       this.firestore
         .collection(this.collectionName)
@@ -68,7 +47,7 @@ export class DataService {
   }//end createEvents
 
   //met a jour un cours
-  updateEvents(data: any) {
+  updatePatient(data: any) {
 
     //console.log(data); 
     
@@ -79,18 +58,17 @@ export class DataService {
   }//end updateEvents
 
   //recupere la liste des cours
-  getEventsList() {
+  getPatientList() {
     return this.itemsCollection.snapshotChanges();
     //return  this.firestore.collection(this.collectionName).snapshotChanges(['added', 'removed', 'modified']);
     
   }//end getEventsList
   
   //supprimer les cpurs
-  deleteEvents(data:any) {
+  deletePatient(data:any) {
     return this.firestore
       .collection(this.collectionName)
       .doc(data.payload.doc.id)
       .delete();
   }//end deleteEvents
-
 }

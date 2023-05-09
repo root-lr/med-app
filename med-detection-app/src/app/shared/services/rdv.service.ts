@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+import { Rdv } from '../model/rdv';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class RdvService {
 
-  private collectionName: string = "events";
-  private itemsCollection: AngularFirestoreCollection<Event>
+ 
+  private collectionName: string = "rdv";
+  private itemsCollection: AngularFirestoreCollection<Rdv>
 
   constructor(private firestore: AngularFirestore) { 
-    this.itemsCollection = this.firestore.collection<Event>(this.collectionName, ref => ref.orderBy("created_at", "desc"));
+    this.itemsCollection = this.firestore.collection<Rdv>(this.collectionName, ref => ref.orderBy("created_at", "desc"));
   }
   //transform data
   transformData(dataFb: any): any[]{
@@ -19,10 +21,10 @@ export class DataService {
 
     dataFb.forEach((data:any) =>{
       let created_at: any = data.payload.doc.data()['created_at'];
-      let title: any = data.payload.doc.data()['title'];
-      let description: any = data.payload.doc.data()['description'];
-      let imageUrl: any = data.payload.doc.data()['imageUrl'];
-      let views: any = data.payload.doc.data()['views'];
+      let title: any = data.payload.doc.data()['date_rdv'];
+      let description: any = data.payload.doc.data()['heure_rdv'];
+      let imageUrl: any = data.payload.doc.data()['patient'];
+      let views: any = data.payload.doc.data()['note'];
       let item: any = {created_at: created_at, title: title, description: description,  imageUrl: imageUrl, views: views, };
       finalData.push(item);
       // return dataList;
@@ -34,31 +36,9 @@ export class DataService {
   }//end transformData
 
 
-  //transform data to slider format
-  transformDataToSliderFormat(dataFbSlider: any): any[]{
-
-    let finalDataSlider: any[] = [];
-
-    dataFbSlider.forEach((data:any) =>{
-      let title: any = data.payload.doc.data()['title'];
-      //let description: string = "";
-      let imageUrl: any = data.payload.doc.data()['imgUrl'];
-      //let views: any = [];
-      let itemSlider: any = {title: title,  imageUrl: imageUrl, views: [], alt: title, thumbImage: imageUrl };
-      finalDataSlider.push(itemSlider);
-      // return dataList;
-    })
-
-
-    return finalDataSlider;
-
-  }//end transformDataToSliderFormat
-
-
-
 
   //cree un cours
-  createEvents(data:any) {
+  createRdv(data:any) {
     return new Promise<any>((resolve, reject) => {
       this.firestore
         .collection(this.collectionName)
@@ -68,7 +48,7 @@ export class DataService {
   }//end createEvents
 
   //met a jour un cours
-  updateEvents(data: any) {
+  updateRdv(data: any) {
 
     //console.log(data); 
     
@@ -79,18 +59,17 @@ export class DataService {
   }//end updateEvents
 
   //recupere la liste des cours
-  getEventsList() {
+  getRdvList() {
     return this.itemsCollection.snapshotChanges();
     //return  this.firestore.collection(this.collectionName).snapshotChanges(['added', 'removed', 'modified']);
     
   }//end getEventsList
   
   //supprimer les cpurs
-  deleteEvents(data:any) {
+  deleteRdv(data:any) {
     return this.firestore
       .collection(this.collectionName)
       .doc(data.payload.doc.id)
       .delete();
   }//end deleteEvents
-
 }
