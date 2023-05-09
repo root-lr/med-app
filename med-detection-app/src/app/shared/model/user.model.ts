@@ -4,6 +4,7 @@ export class User {
   username?: string
   password?: string  
   email?:string
+  phone?:string
 
   private errorMessage: string;
 
@@ -27,6 +28,11 @@ export class User {
     //mot de passe
     if(this.password === undefined || this.password === null ){
       this.errorMessage = "Veuillez saisir un mot de passe"; return false;
+    }
+
+    //mot de passe
+    if(this.phone === undefined || this.phone === null ){
+      this.errorMessage = "Veuillez saisir un téléphone"; return false;
     }
 
     
